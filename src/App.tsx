@@ -1,13 +1,12 @@
-import viteLogo from '/vite.svg';
-import reactLogo from '../../assets/react.svg';
+import Header from './components/Header/Header.tsx';
 
-export default function Header() {
+function App() {
   return (
-    <header className="bg-amber-400 h-[60px] w-full fixed">
-      <div className="flex justify-center h-full">
-        <img src={viteLogo} className="animate-spin-reverse-slow" alt="Vite logo" />
-        <img src={reactLogo} className="animate-spin-reverse-slower" alt="React logo" />
-      </div>
-    </header>
+    <>
+      <Header />
+      <div className="text-surf pt-20 h-500">Vite + React</div>
+    </>
   );
 }
+
+export default App;
