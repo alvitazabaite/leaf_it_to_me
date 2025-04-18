@@ -1,13 +1,25 @@
-import viteLogo from '/vite.svg';
-import reactLogo from '../../assets/react.svg';
+import { NavLink } from "react-router-dom";
+import { clsx } from "clsx";
 
 export default function Header() {
   return (
-    <header className="bg-amber-400 h-[60px] w-full fixed">
-      <div className="flex justify-center h-full">
-        <img src={viteLogo} className="animate-spin-reverse-slow" alt="Vite logo" />
-        <img src={reactLogo} className="animate-spin-reverse-slower" alt="React logo" />
-      </div>
+    <header className="flex items-center justify-center shadow-sm space-x-20 h-[60px] text-black font-serif w-full fixed">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          clsx("cursor-pointer", isActive && "bg-white text-amber-400")
+        }
+      >
+        Home Page
+      </NavLink>
+      <NavLink
+        to="/search"
+        className={({ isActive }) =>
+          clsx("cursor-pointer", isActive && "bg-white text-amber-400")
+        }
+      >
+        Search Page
+      </NavLink>
     </header>
   );
 }
