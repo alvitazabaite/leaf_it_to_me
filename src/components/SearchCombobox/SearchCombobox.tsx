@@ -1,22 +1,28 @@
-import * as React from "react";
-import { ChevronsUpDown } from "lucide-react";
-import { Button } from "@/components/ui/button.tsx";
-import { Command } from "@/components/ui/command.tsx";
+import { useState } from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover.tsx";
+} from "@/components/ui/popover";
+import { SearchComboboxProps } from "@/components/SearchCombobox/SearchCombobox.types.ts";
 
-export function SearchCombobox() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
-    console.log(inputValue);
-  };
+export function SearchCombobox({
+  plants,
+  plantName,
+  onChange,
+}: SearchComboboxProps) {
+  const [open, setOpen] = useState(false);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -25,38 +31,40 @@ export function SearchCombobox() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[500px] justify-between"
+          className="w-[250px] justify-between"
         >
-          {/*{value"Search..."}*/}
-          <ChevronsUpDown className=" h-4 w-4 shrink-0 opacity-50" />
+          {plantName
+            ? plants.find((plant) => plant.value === plantName)?.label
+            : "Search plant ..."}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-[250px] p-0">
         <Command>
-          <input value={value} onChange={handleChange} />
-          {/*<CommandList>*/}
-          {/*<CommandEmpty>No framework found.</CommandEmpty>*/}
-          {/*<CommandGroup>*/}
-          {/*  {frameworks.map((framework) => (*/}
-          {/*    <CommandItem*/}
-          {/*      key={framework.value}*/}
-          {/*      value={framework.value}*/}
-          {/*      onSelect={(currentValue) => {*/}
-          {/*        setValue(currentValue === value ? "" : currentValue);*/}
-          {/*        setOpen(false);*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      <Check*/}
-          {/*        className={cn(*/}
-          {/*          "mr-2 h-4 w-4",*/}
-          {/*          value === framework.value ? "opacity-100" : "opacity-0",*/}
-          {/*        )}*/}
-          {/*      />*/}
-          {/*      {framework.label}*/}
-          {/*    </CommandItem>*/}
-          {/*  ))}*/}
-          {/*</CommandGroup>*/}
-          {/*</CommandList>*/}
+          <CommandInput placeholder="Plant name" />
+          <CommandList>
+            <CommandEmpty>No plant found.</CommandEmpty>
+            <CommandGroup>
+              {plants.map((plant) => (
+                <CommandItem
+                  key={plant.value}
+                  value={plant.value}
+                  onSelect={(currentValue) => {
+                    onChange(currentValue === plantName ? "" : currentValue);
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      plantName === plant.value ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                  {plant.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>

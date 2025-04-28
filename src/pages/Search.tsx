@@ -1,10 +1,11 @@
-import { SearchCombobox } from "@/components/SearchCombobox/SearchCombobox.tsx";
+import { SearchForm } from "@/components/SearchForm/SearchForm.tsx";
+import { SearchProps } from "@/components/SearchCombobox/SearchCombobox.types.ts";
 
-export default function Search() {
+export default function Search({ plants }: SearchProps) {
   return (
     <div className="flex flex-col items-center justify-center">
       <span>Search</span>
-      <SearchCombobox />
+      <SearchForm plants={plants} />
     </div>
   );
 }
