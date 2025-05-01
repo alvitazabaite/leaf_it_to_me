@@ -1,7 +1,10 @@
 import { SearchForm } from "@/components/SearchForm/SearchForm.tsx";
-import { SearchProps } from "@/components/SearchCombobox/SearchCombobox.types.ts";
+import { PlantOption } from "@/components/SearchCombobox/types.ts";
+import { plantsData } from "@/api/mocks.ts";
 
-export default function Search({ plants }: SearchProps) {
+export default function Search() {
+  const plants: PlantOption[] = plantsData;
+
   return (
     <div className="flex flex-col items-center justify-center">
       <span>Search</span>

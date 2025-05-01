@@ -1,7 +1,3 @@
-export type SearchProps = {
-  plants: PlantOption[];
-};
-
 export type SearchComboboxProps = {
   plants: PlantOption[];
   plantName: string;

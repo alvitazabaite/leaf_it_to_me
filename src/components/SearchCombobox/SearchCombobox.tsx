@@ -15,7 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SearchComboboxProps } from "@/components/SearchCombobox/SearchCombobox.types.ts";
+import { SearchComboboxProps } from "@/components/SearchCombobox/types.ts";
 
 export function SearchCombobox({
   plants,
@@ -23,6 +23,11 @@ export function SearchCombobox({
   onChange,
 }: SearchComboboxProps) {
   const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+
+  const filteredPlants = plants.filter((plant) =>
+    plant?.label?.toLowerCase().includes(input.toLowerCase()),
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -41,29 +46,36 @@ export function SearchCombobox({
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0">
         <Command>
-          <CommandInput placeholder="Plant name" />
+          <CommandInput
+            placeholder="Plant name"
+            value={input}
+            onValueChange={setInput}
+          />
           <CommandList>
-            <CommandEmpty>No plant found.</CommandEmpty>
-            <CommandGroup>
-              {plants.map((plant) => (
-                <CommandItem
-                  key={plant.value}
-                  value={plant.value}
-                  onSelect={(currentValue) => {
-                    onChange(currentValue === plantName ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      plantName === plant.value ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                  {plant.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            {filteredPlants.length ? (
+              <CommandGroup>
+                {filteredPlants.map((plant) => (
+                  <CommandItem
+                    key={plant.value}
+                    value={plant.value}
+                    onSelect={(currentValue) => {
+                      onChange(currentValue === plantName ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        plantName === plant.value ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    {plant.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : (
+              <CommandEmpty>No plant found.</CommandEmpty>
+            )}
           </CommandList>
         </Command>
       </PopoverContent>

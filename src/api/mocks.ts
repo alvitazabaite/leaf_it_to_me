@@ -1,4 +1,4 @@
-export const plants = [
+export const plantsData = [
   {
     value: "Asparagus",
     label: "Asparagus",

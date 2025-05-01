@@ -1,13 +1,17 @@
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button.tsx";
 import { SearchCombobox } from "@/components/SearchCombobox/SearchCombobox.tsx";
-import { SearchProps } from "@/components/SearchCombobox/SearchCombobox.types.ts";
 import { useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
+import { SearchFormProps } from "@/components/SearchForm/types.ts";
 
-export function SearchForm({ plants }: SearchProps) {
+export function SearchForm({ plants }: SearchFormProps) {
   const navigate = useNavigate();
-  const { control, handleSubmit, watch } = useForm<{ plantName: string }>({
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<{ plantName: string }>({
     defaultValues: { plantName: "" },
   });
 
@@ -16,9 +20,6 @@ export function SearchForm({ plants }: SearchProps) {
     params.set("plant", data.plantName);
     navigate("/results?" + params.toString());
   };
-
-  const watchedValue = watch("plantName");
-  const valueEmpty = watchedValue == "";
 
   return (
     <form className="flex gap-4" onSubmit={handleSubmit(onSubmit)}>
@@ -37,8 +38,8 @@ export function SearchForm({ plants }: SearchProps) {
         />
       </div>
       <Button
-        className={clsx(!valueEmpty && "cursor-pointer")}
-        disabled={valueEmpty}
+        className={clsx(isValid && "cursor-pointer")}
+        disabled={!isValid}
         type="submit"
       >
         Submit
