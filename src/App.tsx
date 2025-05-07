@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <div className="text-3xl pt-20 min-h-screen flex items-center justify-center">
+      <div className="pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
