@@ -4,8 +4,7 @@ import { plantsData } from "@/api/mockData.ts";
 
 export default function Search() {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <span>Search</span>
+    <div className="min-h-screen flex items-center justify-center">
       <SearchForm plants={plantsData as PlantOption[]} />
     </div>
   );
