@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-center shadow-sm space-x-20 h-[60px] text-black font-serif w-full fixed">
+    <header className="flex items-center justify-center shadow-sm space-x-20 h-[60px] text-black font-serif w-full bg-white fixed">
       <NavLink
         to="/"
         className={({ isActive }) =>
