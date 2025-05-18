@@ -6,21 +6,22 @@ import { PlantCard } from "@/components/PlantCard/PlantCard.tsx";
 import { plantOption } from "@/pages/types.ts";
 import noPlantImage from "@/assets/images/no_plant.jpg";
 
+const initialPlantResponse = {
+  scientificName: "",
+  waterRequirement: "",
+  lightRequirement: "",
+  soilType: "",
+  height: "",
+  layer: "",
+  wikipedia: "",
+  description: "",
+  imagesThumb: "",
+  imagesTitle: "",
+};
+
 export default function Results() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const initialPlantResponse = {
-    scientificName: "",
-    waterRequirement: "",
-    lightRequirement: "",
-    soilType: "",
-    height: "",
-    layer: "",
-    wikipedia: "",
-    description: "",
-    imagesThumb: "",
-    imagesTitle: "",
-  };
   const [plantResponse, setPlantResponse] =
     useState<plantOption>(initialPlantResponse);
   const [plantName, setPlantName] = useState<string>("");
@@ -38,7 +39,7 @@ export default function Results() {
     } else {
       setPlantResponse(initialPlantResponse);
     }
-  }, [initialPlantResponse, searchParams]);
+  }, [searchParams]);
 
   return (
     <div>
