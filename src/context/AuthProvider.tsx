@@ -32,7 +32,7 @@ export default function AuthProvider({
       setUser(data.email);
       setToken(t);
       localStorage.setItem("user", JSON.stringify(obj));
-      navigate("/");
+      navigate("/home");
     }, 1000);
     return true;
   };

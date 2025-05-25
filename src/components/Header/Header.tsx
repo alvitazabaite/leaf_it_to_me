@@ -10,7 +10,7 @@ export default function Header() {
     <header className="relative flex items-center shadow-sm h-[60px] text-black font-serif w-full bg-white">
       <div className="flex space-x-20 w-full justify-center">
         <NavLink
-          to="/"
+          to="/home"
           className={({ isActive }) =>
             clsx("cursor-pointer", isActive && "text-amber-400")
           }

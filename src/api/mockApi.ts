@@ -12,8 +12,8 @@ export function getMockedPlant(plantName: string) {
     layer: getOptionValue(plant.data, "Layer"),
     wikipedia: getOptionValue(plant.data, "Wikipedia"),
     description: plant.description,
-    imagesThumb: plant.images.thumb || null,
-    imagesTitle: plant.images.title || null,
+    imagesThumb: plant.images.thumb,
+    imagesTitle: plant.images.title,
   };
 }
 

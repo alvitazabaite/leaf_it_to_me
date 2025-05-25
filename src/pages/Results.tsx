@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { getMockedPlant } from "@/api/mockApi.ts";
 import { PlantCard } from "@/components/PlantCard/PlantCard.tsx";
 import { plantOption } from "@/pages/types.ts";
-import noPlantImage from "@/assets/images/no_plant.jpg";
 
 const initialPlantResponse = {
   scientificName: "",
@@ -46,18 +45,10 @@ export default function Results() {
       {plantResponse ? (
         <div className="pl-5 pr-5 flex flex-col items-center justify-center">
           <div className="flex flex-row items-center justify-center gap-10 max-w-6xl">
-            {plantResponse.imagesThumb && plantResponse.imagesTitle ? (
-              <img
-                src={plantResponse.imagesThumb}
-                alt={plantResponse.imagesTitle}
-              />
-            ) : (
-              <img
-                className="object-scale-down rounded-md"
-                src={noPlantImage}
-                alt="No plant"
-              />
-            )}
+            <img
+              src={plantResponse.imagesThumb}
+              alt={plantResponse.imagesTitle}
+            />
             <PlantCard plantName={plantName} plantResponse={plantResponse} />
           </div>
           <Button className="mt-5" onClick={handleClick}>

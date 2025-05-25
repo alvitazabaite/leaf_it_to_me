@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import Search from "./pages/Search.tsx";
 import Header from "@/components/Header/Header.tsx";
@@ -19,6 +19,7 @@ export default function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/results" element={<Results />} />
+            <Route path="*" element={<Navigate to="/home" />} />
           </Route>
         </Routes>
       </div>

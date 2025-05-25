@@ -7,6 +7,6 @@ export type plantOption = {
   layer: string;
   wikipedia: string;
   description: string;
-  imagesThumb: string | null;
-  imagesTitle: string | null;
+  imagesThumb: string;
+  imagesTitle: string;
 };
