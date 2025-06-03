@@ -2,14 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlantCardProps } from "@/components/PlantCard/types.ts";
 
 export function PlantCard({ plantName, plantResponse }: PlantCardProps) {
-  const checkIfUrl = (value: string) => {
-    return (
-      value.startsWith("http://") ||
-      value.startsWith("https://") ||
-      value.startsWith("ftp://") ||
-      value.includes("www.")
-    );
-  };
+  const checkIfUrl = (value: string) =>
+    value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("ftp://") ||
+    value.includes("www.");
 
   const cardOptions = [
     { label: "Water requirement", value: plantResponse.waterRequirement },

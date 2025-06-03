@@ -24,7 +24,7 @@ export default function AuthProvider({
 
   const login = (data: LoginType) => {
     if (data.email !== userData.email || data.password !== userData.password) {
-      return false;
+      return "Invalid email or password";
     }
     const t = randomAlphaNumeric(50);
     setTimeout(() => {
@@ -34,7 +34,7 @@ export default function AuthProvider({
       localStorage.setItem("user", JSON.stringify(obj));
       navigate("/home");
     }, 1000);
-    return true;
+    return null;
   };
 
   const logout = () => {

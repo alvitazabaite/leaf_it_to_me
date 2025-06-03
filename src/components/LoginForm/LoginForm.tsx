@@ -3,11 +3,11 @@ import { LoginFormInput } from "@/components/LoginForm/types.ts";
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { clsx } from "clsx";
-import { useContext, useState } from "react";
-import { AuthContext } from "@/context/AuthContext.ts";
+import { useState } from "react";
+import { useAuth } from "@/context/AuthContext.ts";
 
 export function LoginForm() {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -16,9 +16,9 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<LoginFormInput> = (data) => {
-    const loggedIn = login(data);
-    if (!loggedIn) {
-      setError("Invalid email or password");
+    const error = login(data);
+    if (error) {
+      setError(error);
     }
   };
 
@@ -36,7 +36,7 @@ export function LoginForm() {
       />
       <Input
         placeholder={"Password"}
-        {...register("password", { required: true, minLength: 3 })}
+        {...register("password", { required: true })}
       />
       {error && <p className="text-red-500 text-sm text-center">{error}</p>}
       <div className="flex justify-center">
@@ -45,7 +45,6 @@ export function LoginForm() {
           disabled={!isValid}
           type="submit"
         >
-          {" "}
           Login
         </Button>
       </div>

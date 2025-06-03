@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { clsx } from "clsx";
-import { useContext } from "react";
-import { AuthContext } from "@/context/AuthContext.ts";
+import { useAuth } from "@/context/AuthContext.ts";
 
 export default function Header() {
-  const { logout } = useContext(AuthContext);
+  const { logout } = useAuth();
 
   return (
     <header className="relative flex items-center shadow-sm h-[60px] text-black font-serif w-full bg-white">

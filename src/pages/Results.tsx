@@ -41,7 +41,7 @@ export default function Results() {
   }, [searchParams]);
 
   return (
-    <div>
+    <div className="mt-10">
       {plantResponse ? (
         <div className="pl-5 pr-5 flex flex-col items-center justify-center">
           <div className="flex flex-row items-center justify-center gap-10 max-w-6xl">
