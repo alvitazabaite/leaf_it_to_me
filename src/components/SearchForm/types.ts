@@ -1,8 +1,8 @@
 export type SearchFormProps = {
-  plants: PlantOption[];
+    plants: PlantOption[];
 };
 
 export type PlantOption = {
-  value: string;
-  label?: string;
+    value: string;
+    label?: string;
 };

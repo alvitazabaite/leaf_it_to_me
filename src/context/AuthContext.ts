@@ -1,13 +1,13 @@
-import { createContext, useContext } from "react";
-import { ProviderProps } from "./types";
+import { createContext, useContext } from 'react';
+import { ProviderProps } from './types';
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+    return useContext(AuthContext);
 };
 
 export const AuthContext = createContext<ProviderProps>({
-  user: null,
-  token: null,
-  login: () => null,
-  logout: () => {},
+    user: null,
+    token: null,
+    login: () => null,
+    logout: () => {},
 });
