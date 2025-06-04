@@ -23,7 +23,7 @@ export function LoginForm() {
     };
 
     return (
-        <form className="flex flex-col w-72 gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col w-72 gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 placeholder={'Email'}
                 {...register('email', {

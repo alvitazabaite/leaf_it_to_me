@@ -7,5 +7,6 @@ export interface ProviderProps {
     user: string | null;
     token: string | null;
     login(data: LoginType): string | null;
+    registerUser(data: LoginType): string | null;
     logout(): void;
 }

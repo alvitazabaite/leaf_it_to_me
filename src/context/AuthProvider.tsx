@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { randomAlphaNumeric, userData } from '@/lib/utils.ts';
 import * as React from 'react';
+import { randomAlphaNumeric } from '@/lib/utils.ts';
 import { LoginType } from '@/context/types.ts';
 import { AuthContext } from './AuthContext.ts';
 
@@ -18,16 +18,31 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const [token, setToken] = useState(storedData?.token || null);
     const navigate = useNavigate();
 
+    const registerUser = (data: LoginType): string | null => {
+        const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+        const matchedUser = users.find(
+            (user: LoginType) => user.email === data.email && user.password === data.password,
+        );
+        if (matchedUser) {
+            return 'User already exists. Please login.';
+        }
+        localStorage.setItem('registeredUsers', JSON.stringify([...users, data]));
+        return null;
+    };
+
     const login = (data: LoginType) => {
-        if (data.email !== userData.email || data.password !== userData.password) {
+        const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+        const matchedUser = users.find(
+            (user: LoginType) => user.email === data.email && user.password === data.password,
+        );
+        if (!matchedUser) {
             return 'Invalid email or password';
         }
         const t = randomAlphaNumeric(50);
         setTimeout(() => {
-            const obj = { ...data, token: t };
             setUser(data.email);
             setToken(t);
-            localStorage.setItem('user', JSON.stringify(obj));
+            localStorage.setItem('user', JSON.stringify({ ...matchedUser, token: t }));
             navigate('/home');
         }, 1000);
         return null;
@@ -35,9 +50,9 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     const logout = () => {
         setUser(null);
-        setToken('');
+        setToken(null);
         localStorage.removeItem('user');
     };
 
-    return <AuthContext.Provider value={{ user, token, login, logout }}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{ user, token, login, logout, registerUser }}>{children}</AuthContext.Provider>;
 }

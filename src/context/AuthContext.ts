@@ -10,4 +10,5 @@ export const AuthContext = createContext<ProviderProps>({
     token: null,
     login: () => null,
     logout: () => {},
+    registerUser: () => null,
 });
