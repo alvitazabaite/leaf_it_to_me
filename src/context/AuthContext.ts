@@ -8,7 +8,7 @@ export const useAuth = () => {
 export const AuthContext = createContext<ProviderProps>({
     user: null,
     token: null,
-    login: () => null,
+    login: async () => null,
+    registerUser: async () => null,
     logout: () => {},
-    registerUser: () => null,
 });

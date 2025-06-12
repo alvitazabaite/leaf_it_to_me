@@ -15,8 +15,8 @@ export function LoginForm() {
     } = useForm<LoginFormInput>();
     const [error, setError] = useState<string | null>(null);
 
-    const onSubmit: SubmitHandler<LoginFormInput> = data => {
-        const error = login(data);
+    const onSubmit: SubmitHandler<LoginFormInput> = async data => {
+        const error = await login(data);
         if (error) {
             setError(error);
         }

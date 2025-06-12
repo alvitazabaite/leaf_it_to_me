@@ -19,12 +19,12 @@ export function RegisterForm() {
     const [registered, setRegistered] = useState(false);
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<RegisterFormInput> = data => {
+    const onSubmit: SubmitHandler<RegisterFormInput> = async data => {
         if (data.password !== data.confirmPassword) {
             setError('Passwords do not match. Try again.');
             return;
         }
-        const error = registerUser({ email: data.email, password: data.password });
+        const error = await registerUser({ email: data.email, password: data.password });
         if (error) {
             setError(error);
         } else {
