@@ -1,6 +1,6 @@
-import { plantOption } from "@/pages/types.ts";
+import { plantOption } from '@/pages/types.ts';
 
 export type PlantCardProps = {
-  plantName: string;
-  plantResponse: plantOption;
+    plantName: string;
+    plantResponse: plantOption;
 };
