@@ -3,19 +3,33 @@ import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 import { LoginType } from '@/context/types.ts';
 import { AuthContext } from './AuthContext.ts';
-import { supabase } from '@/api/supabase.ts';
+import { supabase } from '@/api/supabase/client.ts';
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                setUser(session.user.email || null);
+                setToken(session.access_token || null);
+            }
+            setLoading(false);
+        });
+
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
             setUser(session?.user?.email || null);
             setToken(session?.access_token || null);
         });
-        data.subscription.unsubscribe();
+        return () => {
+            subscription.unsubscribe();
+        };
     }, []);
 
     const registerUser = async (userData: LoginType) => {
@@ -51,7 +65,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
         if (data.session && data.user) {
             setUser(userData.email);
             setToken(session.access_token);
-            navigate('/home');
+            navigate('/search');
             return null;
         }
         return 'Login failed. Please try again.';
@@ -63,5 +77,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
         setToken(null);
     };
 
-    return <AuthContext.Provider value={{ user, token, login, logout, registerUser }}>{children}</AuthContext.Provider>;
+    return loading ? null : (
+        <AuthContext.Provider value={{ user, token, login, logout, registerUser }}>{children}</AuthContext.Provider>
+    );
 }

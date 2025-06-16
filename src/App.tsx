@@ -16,7 +16,7 @@ export default function App() {
                     <Route element={<PageLayout />}>
                         <Route path="/search" element={<Search />} />
                         <Route path="/results" element={<Results />} />
-                        <Route path="*" element={<Navigate to="/home" />} />
+                        <Route path="*" element={<Navigate to="/search" />} />
                     </Route>
                 </Route>
             </Routes>
