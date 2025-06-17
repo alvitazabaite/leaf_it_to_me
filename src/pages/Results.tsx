@@ -5,6 +5,7 @@ import { PlantCard } from '@/components/PlantCard/PlantCard.tsx';
 import { PlantResponseType } from '@/pages/types.ts';
 import { getPlantByName } from '@/api/supabase/plantsApi.ts';
 import noImage from '@/assets/no_image_available.png';
+import { toast } from 'sonner';
 
 export default function Results() {
     const [searchParams] = useSearchParams();
@@ -21,12 +22,15 @@ export default function Results() {
         if (!name) return;
         const fetchData = async () => {
             const { status, response } = await getPlantByName(name);
-            if (status === 200 && response) {
+            if (status === 200 && typeof response === 'object') {
                 setPlantResponse(response);
                 setPlantName(name);
             } else {
-                setPlantName(null);
-                setPlantResponse(null);
+                toast.error('Failed to load data of the plant. Please refresh the page.', {
+                    style: {
+                        color: 'red',
+                    },
+                });
             }
         };
         fetchData();

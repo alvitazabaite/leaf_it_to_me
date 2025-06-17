@@ -6,17 +6,16 @@ import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext.ts';
 import { clsx } from 'clsx';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export function RegisterForm() {
     const { registerUser } = useAuth();
-
     const {
         register,
         handleSubmit,
         formState: { isValid },
     } = useForm<RegisterFormInput>();
     const [error, setError] = useState<string | null>(null);
-    const [registered, setRegistered] = useState(false);
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<RegisterFormInput> = async data => {
@@ -26,18 +25,24 @@ export function RegisterForm() {
         }
         const error = await registerUser({ email: data.email, password: data.password });
         if (error) {
-            setError(error);
+            toast.error(error, {
+                style: {
+                    color: 'red',
+                },
+            });
         } else {
-            setRegistered(true);
+            toast.success('Registration successful. Please login.', {
+                style: {
+                    color: 'green',
+                },
+            });
             setTimeout(() => {
                 navigate('/login');
-            }, 2000);
+            }, 1000);
         }
     };
 
-    return registered ? (
-        <div className="text-sm text-center">Registration successful. Please login.</div>
-    ) : (
+    return (
         <form className="flex flex-col w-72 gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 placeholder={'Email'}

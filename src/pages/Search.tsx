@@ -2,6 +2,7 @@ import { SearchForm } from '@/components/SearchForm/SearchForm.tsx';
 import { getPlantsNames } from '@/api/supabase/plantsApi.ts';
 import { useEffect, useState } from 'react';
 import { PlantOption } from '@/pages/types.ts';
+import { toast } from 'sonner';
 
 export default function Search() {
     const [plants, setPlants] = useState<PlantOption[]>([]);
@@ -9,14 +10,18 @@ export default function Search() {
     useEffect(() => {
         const fetchData = async () => {
             const { status, response } = await getPlantsNames();
-            if (status === 200 && response) {
+            if (status === 200 && Array.isArray(response)) {
                 const plantsData = response.map(name => ({
                     value: name,
                     label: name,
                 }));
                 setPlants(plantsData);
             } else {
-                console.log('NOTIFICATION NEEDED');
+                toast.error('Failed to load data of the plant. Please refresh the page.', {
+                    style: {
+                        color: 'red',
+                    },
+                });
             }
         };
         fetchData();
