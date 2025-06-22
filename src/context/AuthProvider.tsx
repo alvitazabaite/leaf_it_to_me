@@ -8,11 +8,12 @@ import { supabase } from '@/api/supabase/client.ts';
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        setLoading(true);
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (session) {
                 setUser(session.user.email || null);
@@ -37,6 +38,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             email: userData.email,
             password: userData.password,
         });
+
         if (!signInError) {
             return 'User already exists. Please login.';
         }

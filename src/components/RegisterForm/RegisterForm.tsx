@@ -51,8 +51,16 @@ export function RegisterForm() {
                     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
             />
-            <Input placeholder={'Password'} {...register('password', { required: true, minLength: 5 })} />
-            <Input placeholder="Confirm Password" {...register('confirmPassword', { required: true })} />
+            <Input
+                type={'password'}
+                placeholder={'Password'}
+                {...register('password', { required: true, minLength: 5 })}
+            />
+            <Input
+                type={'password'}
+                placeholder="Confirm Password"
+                {...register('confirmPassword', { required: true })}
+            />
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
             <div className="flex justify-center">
                 <Button className={clsx(isValid && 'cursor-pointer w-1/3')} disabled={!isValid} type="submit">

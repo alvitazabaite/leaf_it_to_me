@@ -17,7 +17,7 @@ export function PlantCard({ plantName, plantResponse }: PlantCardProps) {
                         <div key={label}>
                             <span className="font-bold text-gray-700">{label}: </span>
                             {checkIfUrl(value) ? (
-                                <a href={encodeURI(value as string)} className="text-blue-600 underline">
+                                <a href={encodeURI(value.toString())} className="text-blue-600 underline">
                                     {value}
                                 </a>
                             ) : (

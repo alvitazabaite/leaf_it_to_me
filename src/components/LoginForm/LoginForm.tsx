@@ -34,7 +34,7 @@ export function LoginForm() {
                     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
             />
-            <Input placeholder={'Password'} {...register('password', { required: true })} />
+            <Input type={'password'} placeholder={'Password'} {...register('password', { required: true })} />
             <div className="flex justify-center">
                 <Button className={clsx(isValid && 'cursor-pointer w-1/3')} disabled={!isValid} type="submit">
                     Login

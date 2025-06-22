@@ -28,7 +28,7 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="h-[calc(100vh-60px)] flex items-center justify-center">
             <SearchForm plants={plants} />
         </div>
     );
