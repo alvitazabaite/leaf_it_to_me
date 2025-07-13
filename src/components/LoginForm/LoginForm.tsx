@@ -28,15 +28,25 @@ export function LoginForm() {
     return (
         <form className="flex flex-col w-72 gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <Input
+                className="bg-white"
                 placeholder={'Email'}
                 {...register('email', {
                     required: true,
                     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
             />
-            <Input type={'password'} placeholder={'Password'} {...register('password', { required: true })} />
+            <Input
+                className="bg-white text-lg"
+                type={'password'}
+                placeholder={'Password'}
+                {...register('password', { required: true })}
+            />
             <div className="flex justify-center">
-                <Button className={clsx(isValid && 'cursor-pointer w-1/3')} disabled={!isValid} type="submit">
+                <Button
+                    className={clsx('text-lg text-yellowish-white', isValid && 'cursor-pointer w-1/3')}
+                    disabled={!isValid}
+                    type="submit"
+                >
                     Login
                 </Button>
             </div>

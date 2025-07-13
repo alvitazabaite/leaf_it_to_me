@@ -61,7 +61,7 @@ export function RegisterForm() {
                 placeholder="Confirm Password"
                 {...register('confirmPassword', { required: true })}
             />
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+            {error && <p className="text-red-500 text-lg text-center">{error}</p>}
             <div className="flex justify-center">
                 <Button className={clsx(isValid && 'cursor-pointer w-1/3')} disabled={!isValid} type="submit">
                     Register

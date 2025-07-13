@@ -3,6 +3,7 @@ import { getPlantsNames } from '@/api/supabase/plantsApi.ts';
 import { useEffect, useState } from 'react';
 import { PlantOption } from '@/pages/types.ts';
 import { toast } from 'sonner';
+import leafs from '@/assets/leafs.png';
 
 export default function Search() {
     const [plants, setPlants] = useState<PlantOption[]>([]);
@@ -28,8 +29,11 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="h-[calc(100vh-60px)] flex items-center justify-center">
-            <SearchForm plants={plants} />
+        <div className="flex-grow relative h-[49.875rem]">
+            <img src={leafs} alt="leafs" className="absolute inset-0 w-full h-full object-cover -z-10" />
+            <div className="flex items-center justify-center h-full">
+                <SearchForm plants={plants} />
+            </div>
         </div>
     );
 }
