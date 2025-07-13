@@ -8,7 +8,7 @@ import { supabase } from '@/api/supabase/client.ts';
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 

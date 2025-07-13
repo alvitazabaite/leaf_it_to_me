@@ -29,10 +29,16 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="flex-grow relative h-[49.875rem]">
-            <img src={leafs} alt="leafs" className="absolute inset-0 w-full h-full object-cover -z-10" />
-            <div className="flex items-center justify-center h-full">
-                <SearchForm plants={plants} />
+        <div className="relative h-[49.875rem]">
+            <img src={leafs} alt="leafs" className="absolute w-full h-full object-cover -z-10" />
+            <div className="flex flex-col items-center pt-[8.75rem] px-[26.6875rem]">
+                <div className="text-white text-4xl font-bold text-center mb-[0.62rem]">Hello, Plant Lover!</div>
+                <div className="text-white text-xl font-normal">
+                    Search for plants by name, explore thousands of species.
+                </div>
+                <div className="mt-[3rem]">
+                    <SearchForm plants={plants} />
+                </div>
             </div>
         </div>
     );

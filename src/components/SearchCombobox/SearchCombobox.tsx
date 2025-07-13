@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
@@ -15,12 +15,16 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button variant="outline" role="combobox" aria-expanded={open} className="w-[250px] justify-between">
-                    {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search plant ...'}
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="bg-white flex justify-start text-dark-gray h-[2.5625rem] w-[18.75rem] font-normal text-lg"
+                >
+                    {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search'}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[250px] p-0">
+            <PopoverContent className="w-[18.75rem] p-0 bg-white text-dark-gray">
                 <Command>
                     <CommandInput placeholder="Plant name" value={input} onValueChange={setInput} />
                     <CommandList>

@@ -4,6 +4,7 @@ import { SearchCombobox } from '@/components/SearchCombobox/SearchCombobox.tsx';
 import { useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { SearchFormProps } from '@/components/SearchForm/types.ts';
+import { Search } from 'lucide-react';
 
 export function SearchForm({ plants }: SearchFormProps) {
     const navigate = useNavigate();
@@ -22,8 +23,8 @@ export function SearchForm({ plants }: SearchFormProps) {
     };
 
     return (
-        <form className="flex gap-4 max-w-full" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-row items-center">
                 <Controller
                     control={control}
                     name={'plantName'}
@@ -32,10 +33,10 @@ export function SearchForm({ plants }: SearchFormProps) {
                         <SearchCombobox plants={plants} plantName={value} onChange={onChange} />
                     )}
                 />
+                <Button className={clsx(isValid && 'cursor-pointer')} disabled={!isValid} type="submit">
+                    <Search width={64} height={64} className="text-white " />
+                </Button>
             </div>
-            <Button className={clsx(isValid && 'cursor-pointer')} disabled={!isValid} type="submit">
-                Submit
-            </Button>
         </form>
     );
 }
