@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
+
 @theme {
     --color-green: #3A5A40;
     --color-dark-green: #344E41;
@@ -27,11 +28,12 @@
 }
 @layer base {
     body {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Nunito', serif;
     }
 }
+
 @layer utilities {
     .font-inter {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', serif;
     }
 }

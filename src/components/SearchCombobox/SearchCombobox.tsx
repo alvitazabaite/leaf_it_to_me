@@ -14,24 +14,33 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
+            <PopoverTrigger
+                asChild
+                className="flex border h-[2.5625rem] w-[18.75rem] bg-white justify-start rounded-[0.625rem] border-gray"
+            >
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="bg-white flex justify-start text-dark-gray h-[2.5625rem] w-[18.75rem] font-normal text-lg"
+                    className="text-lg leading-normal text-dark-gray font-normal pt-2 pr-[5px] pb-2 pl-2"
                 >
                     {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search'}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[18.75rem] p-0 bg-white text-dark-gray">
+            <PopoverContent className="flex border w-[18.75rem] p-0 bg-white text-dark-gray rounded-[0.625rem] border-gray">
                 <Command>
-                    <CommandInput placeholder="Plant name" value={input} onValueChange={setInput} />
+                    <CommandInput
+                        placeholder="Plant name"
+                        value={input}
+                        onValueChange={setInput}
+                        className="text-base text-darker-gray"
+                    />
                     <CommandList>
                         {filteredPlants.length ? (
                             <CommandGroup>
                                 {filteredPlants.map(plant => (
                                     <CommandItem
+                                        className="text-base text-darker-gray"
                                         key={plant.value}
                                         value={plant.value}
                                         onSelect={currentValue => {
@@ -41,7 +50,7 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
                                     >
                                         <Check
                                             className={cn(
-                                                'mr-2 h-4 w-4',
+                                                'h-2 w-2',
                                                 plantName === plant.value ? 'opacity-100' : 'opacity-0',
                                             )}
                                         />

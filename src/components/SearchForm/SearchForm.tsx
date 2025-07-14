@@ -1,18 +1,12 @@
 import { Controller, useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/button.tsx';
 import { SearchCombobox } from '@/components/SearchCombobox/SearchCombobox.tsx';
 import { useNavigate } from 'react-router-dom';
-import { clsx } from 'clsx';
 import { SearchFormProps } from '@/components/SearchForm/types.ts';
-import { Search } from 'lucide-react';
+import { toast } from 'sonner';
 
 export function SearchForm({ plants }: SearchFormProps) {
     const navigate = useNavigate();
-    const {
-        control,
-        handleSubmit,
-        formState: { isValid },
-    } = useForm<{ plantName: string }>({
+    const { control, handleSubmit } = useForm<{ plantName: string }>({
         defaultValues: { plantName: '' },
     });
 
@@ -22,21 +16,29 @@ export function SearchForm({ plants }: SearchFormProps) {
         navigate('/results?' + params.toString());
     };
 
+    const submitForm = handleSubmit(onSubmit);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-row items-center">
-                <Controller
-                    control={control}
-                    name={'plantName'}
-                    rules={{ required: true }}
-                    render={({ field: { onChange, value } }) => (
-                        <SearchCombobox plants={plants} plantName={value} onChange={onChange} />
-                    )}
-                />
-                <Button className={clsx(isValid && 'cursor-pointer')} disabled={!isValid} type="submit">
-                    <Search width={64} height={64} className="text-white " />
-                </Button>
-            </div>
+            <Controller
+                control={control}
+                name={'plantName'}
+                rules={{ required: true }}
+                render={({ field: { onChange, value } }) => (
+                    <SearchCombobox
+                        plants={plants}
+                        plantName={value}
+                        onChange={currentValue => {
+                            onChange(currentValue);
+                            submitForm().catch(() => {
+                                toast.error('Failed to submit the plant. Please try again.', {
+                                    style: { color: 'red' },
+                                });
+                            });
+                        }}
+                    />
+                )}
+            />
         </form>
     );
 }

@@ -29,16 +29,23 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="relative h-[49.875rem]">
-            <img src={leafs} alt="leafs" className="absolute w-full h-full object-cover -z-10" />
-            <div className="flex flex-col items-center pt-[8.75rem] px-[26.6875rem]">
+        <div className="flex flex-col h-[55.625rem] self-stretch relative">
+            <div
+                className="absolute inset-0 -z-10 w-full"
+                style={{
+                    backgroundImage: `linear-gradient(0deg, rgba(6,57,31,0.8) 0%, rgba(6,57,31,0.8) 100%), url(${leafs})`,
+                    backgroundColor: 'lightgray',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundBlendMode: 'hard-light, normal',
+                    backgroundSize: 'cover',
+                }}
+            />
+            <div className="flex flex-col items-center mt-[22.3463rem] px-[26.6875rem]">
                 <div className="text-white text-4xl font-bold text-center mb-[0.62rem]">Hello, Plant Lover!</div>
-                <div className="text-white text-xl font-normal">
+                <div className="text-white text-xl font-normal leading-normal mb-[3rem]">
                     Search for plants by name, explore thousands of species.
                 </div>
-                <div className="mt-[3rem]">
-                    <SearchForm plants={plants} />
-                </div>
+                <SearchForm plants={plants} />
             </div>
         </div>
     );
