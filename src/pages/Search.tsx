@@ -29,7 +29,7 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="flex flex-col h-[55.625rem] self-stretch relative">
+        <div className="flex flex-col h-[890px] self-stretch relative">
             <div
                 className="absolute inset-0 -z-10 w-full"
                 style={{
@@ -40,9 +40,9 @@ export default function Search() {
                     backgroundSize: 'cover',
                 }}
             />
-            <div className="flex flex-col items-center mt-[22.3463rem] px-[26.6875rem]">
-                <div className="text-white text-4xl font-bold text-center mb-[0.62rem]">Hello, Plant Lover!</div>
-                <div className="text-white text-xl font-normal leading-normal mb-[3rem]">
+            <div className="text-center flex flex-col items-center px-[26.6875rem] my-auto mx-0">
+                <div className="text-white text-4xl font-bold text-center mb-[9.92px]">Hello, Plant Lover!</div>
+                <div className="text-white text-xl font-normal leading-normal mb-[48px]">
                     Search for plants by name, explore thousands of species.
                 </div>
                 <SearchForm plants={plants} />
