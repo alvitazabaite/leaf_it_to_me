@@ -1,8 +1,13 @@
 export default function Footer() {
     return (
-        <footer className="flex h-[70px] items-center justify-center gap-2.5 p-2.5 bg-dark-green">
-            <div className="text-white font-inter text-xl leading-normal font-normal">
-                © 2025 – Free to explore, learn, and grow
+        <footer className="flex h-[108px] md:h-[70px] items-center justify-center gap-[10px] p-[10px] bg-dark-green">
+            <div className="text-white font-inter text-[15px] md:text-xl leading-normal font-normal text-center">
+                <span className="md:hidden">
+                    © 2025
+                    <br />
+                    Free to explore, learn, and grow
+                </span>
+                <span className="hidden md:inline">© 2025 – Free to explore, learn, and grow</span>
             </div>
         </footer>
     );

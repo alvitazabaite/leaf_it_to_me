@@ -4,6 +4,11 @@
 @import "tw-animate-css";
 
 @theme {
+    --breakpoint-*: initial;
+    --breakpoint-sm: 360px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1800px;
+
     --color-green: #3A5A40;
     --color-dark-green: #344E41;
     --color-white: #FFF;
@@ -25,9 +30,6 @@
     --text-5xl: 40px;
     --text-6xl: 48px;
     --text-7xl: 60px;
-
-    --breakpoint-sm: 360px;
-    --breakpoint-xl: 1400px;
 }
 @layer base {
     body {

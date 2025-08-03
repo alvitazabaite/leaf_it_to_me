@@ -16,18 +16,18 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger
                 asChild
-                className="flex border h-[41,0016px] w-[300px] bg-white justify-start rounded-[10px] border-gray"
+                className="flex border h-[34px] md:h-[41px] w-[205px] md:w-[300px] bg-white justify-start rounded-[10px] border-gray"
             >
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="text-lg leading-normal text-dark-gray font-normal pt-2 pr-[5px] pb-2 pl-2"
+                    className="tex-[15px] md:text-lg leading-normal text-dark-gray font-normal pt-2 pb-2 pl-2"
                 >
                     {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search'}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="flex border w-[300px] p-0 bg-white text-dark-gray rounded-[10px] border-gray">
+            <PopoverContent className="flex border w-[205px] md:w-[300px] p-0 bg-white text-dark-gray rounded-[10px] border-gray">
                 <Command>
                     <CommandInput
                         placeholder="Plant name"
@@ -35,12 +35,12 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
                         onValueChange={setInput}
                         className="text-base text-darker-gray"
                     />
-                    <CommandList>
+                    <CommandList className="max-h-[200px] overflow-y-auto">
                         {filteredPlants.length ? (
                             <CommandGroup>
                                 {filteredPlants.map(plant => (
                                     <CommandItem
-                                        className="text-base text-darker-gray"
+                                        className="text-sm md:text-base text-darker-gray cursor-pointer hover:bg-gray-100"
                                         key={plant.value}
                                         value={plant.value}
                                         onSelect={currentValue => {
