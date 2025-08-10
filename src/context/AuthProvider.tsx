@@ -1,43 +1,85 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { randomAlphaNumeric, userData } from '@/lib/utils.ts';
 import * as React from 'react';
 import { LoginType } from '@/context/types.ts';
 import { AuthContext } from './AuthContext.ts';
+import { supabase } from '@/api/supabase/client.ts';
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
-    const storedData = (() => {
-        const data = JSON.parse(localStorage.getItem('user') || '{}');
-        if (data?.email && data?.token) {
-            return data;
-        } else {
-            return null;
-        }
-    })();
-    const [user, setUser] = useState<string | null>(storedData?.email || null);
-    const [token, setToken] = useState(storedData?.token || null);
+    const [user, setUser] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
-    const login = (data: LoginType) => {
-        if (data.email !== userData.email || data.password !== userData.password) {
-            return 'Invalid email or password';
+    useEffect(() => {
+        setLoading(true);
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                setUser(session.user.email || null);
+                setToken(session.access_token || null);
+            }
+            setLoading(false);
+        });
+
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user?.email || null);
+            setToken(session?.access_token || null);
+        });
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, []);
+
+    const registerUser = async (userData: LoginType) => {
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+            email: userData.email,
+            password: userData.password,
+        });
+
+        if (!signInError) {
+            return 'User already exists. Please login.';
         }
-        const t = randomAlphaNumeric(50);
-        setTimeout(() => {
-            const obj = { ...data, token: t };
-            setUser(data.email);
-            setToken(t);
-            localStorage.setItem('user', JSON.stringify(obj));
-            navigate('/home');
-        }, 1000);
+
+        const { error: signUpError } = await supabase.auth.signUp({
+            email: userData.email,
+            password: userData.password,
+        });
+
+        if (signUpError) {
+            return `Registration failed. Please try again.`;
+        }
         return null;
     };
 
-    const logout = () => {
-        setUser(null);
-        setToken('');
-        localStorage.removeItem('user');
+    const login = async (userData: LoginType) => {
+        const { data, error: signInError } = await supabase.auth.signInWithPassword({
+            email: userData.email,
+            password: userData.password,
+        });
+
+        if (signInError) {
+            return `Invalid email or password. Please try again.`;
+        }
+        const session = data.session;
+        if (data.session && data.user) {
+            setUser(userData.email);
+            setToken(session.access_token);
+            navigate('/search');
+            return null;
+        }
+        return 'Login failed. Please try again.';
     };
 
-    return <AuthContext.Provider value={{ user, token, login, logout }}>{children}</AuthContext.Provider>;
+    const logout = async () => {
+        await supabase.auth.signOut();
+        setUser(null);
+        setToken(null);
+    };
+
+    return loading ? null : (
+        <AuthContext.Provider value={{ user, token, login, logout, registerUser }}>{children}</AuthContext.Provider>
+    );
 }

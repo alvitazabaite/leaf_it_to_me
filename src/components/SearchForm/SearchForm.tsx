@@ -22,7 +22,7 @@ export function SearchForm({ plants }: SearchFormProps) {
     };
 
     return (
-        <form className="flex gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex gap-4 max-w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col">
                 <Controller
                     control={control}

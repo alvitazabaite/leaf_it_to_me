@@ -6,6 +6,7 @@ export type LoginType = {
 export interface ProviderProps {
     user: string | null;
     token: string | null;
-    login(data: LoginType): string | null;
+    login(userData: LoginType): Promise<string | null>;
+    registerUser(userData: LoginType): Promise<string | null>;
     logout(): void;
 }

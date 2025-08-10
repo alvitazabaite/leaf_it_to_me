@@ -4,5 +4,5 @@ export type SearchFormProps = {
 
 export type PlantOption = {
     value: string;
-    label?: string;
+    label: string;
 };
