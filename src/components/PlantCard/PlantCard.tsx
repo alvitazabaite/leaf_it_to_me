@@ -31,38 +31,46 @@ export function PlantCard({ plantName, plantResponse }: PlantCardProps) {
         .filter(([, value]) => value !== undefined && value !== null);
 
     return (
-        <Card>
+        <Card className="mx-auto mt-[24px]">
             <CardHeader>
-                <CardTitle className="text-black font-nunito text-5xl font-bold leading-normal">{plantName}</CardTitle>
+                <CardTitle className="text-black font-nunito text-4xl md:text-5xl font-bold leading-normal">
+                    {plantName}
+                </CardTitle>
             </CardHeader>
-
-            <CardDescription className="self-stretch text-dark-gray-3 font-nunito text-3xl font-normal leading-normal mt-1 mb-[40px]">
+            <CardDescription className="self-stretch text-dark-gray-3 font-nunito text-xl md:text-3xl font-normal leading-normal mt-1 mb-10 md:mb-[40px]">
                 {plantResponse['Scientific name']}
             </CardDescription>
             <Divider />
-
             <CardContent>
-                <div className="text-black font-nunito text-base font-normal leading-normal">
+                <div className="text-black font-nunito text-sm md:text-base font-normal leading-normal">
                     {details.map(([label, value], i) => (
                         <React.Fragment key={label}>
-                            <div className="grid items-center w-[518px] grid-cols-[214px_74px_1fr]">
+                            <div
+                                className="
+                                  grid items-center
+                                  w-[304px] md:w-[518px]
+                                  grid-cols-[176px_20px_107px] md:grid-cols-[214px_74px_1fr]
+                                  gap-x-4 md:gap-x-0
+                                "
+                            >
                                 <div className="flex items-center gap-[15px]">
                                     <img
                                         src={labelImages[label]}
                                         alt={`${label} icon`}
-                                        className="w-[22px] h-[22px] flex-shrink-0 object-contain"
+                                        className="w-[20px] h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0 object-contain aspect-square"
                                     />
-                                    <div>{label}</div>
+                                    <div className="truncate">{label}</div>
                                 </div>
-                                <div />
-                                <div>{value}</div>
+                                {/* Spacer */}
+                                <div className="hidden md:block" />
+                                <div className="truncate">{value}</div>
                             </div>
                             {i !== details.length - 1 && <Divider />}
                         </React.Fragment>
                     ))}
 
                     <Divider />
-                    <div className="text-black text-base font-nunito leading-normal font-normal">
+                    <div className="text-black text-sm md:text-base font-nunito leading-normal font-normal">
                         <div className="font-bold mb-4">Description:</div>
                         <div className="leading-[26px]">{plantResponse['Description']}</div>
                         <Divider />

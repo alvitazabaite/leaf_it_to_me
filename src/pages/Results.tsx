@@ -31,26 +31,25 @@ export default function Results() {
     }, [name]);
 
     return (
-        <div className="flex flex-col items-start min-h-screen w-full relative pt-[24px] pb-[60px]">
+        <div className="flex flex-col items-start min-h-screen w-full relative pt-[24px]">
             <div className="flex flex-col md:flex-row px-[24px] md:px-[153px] items-start gap-[24px] md:gap-[80px] mx-auto">
                 {plantName && plantResponse && (
                     <>
-                        <div className="flex flex-col w-[497px] pt-[40px] items-start gap-[10px] shrink-0">
-                            {plantResponse['Images thumb'] ? (
-                                <img
-                                    src={plantResponse['Images thumb']}
-                                    alt={plantResponse['Images title'] || 'Plant image'}
-                                    className="w-[497px] h-[373px] aspect-[493/370] rounded-[12px] object-contain bg-white"
-                                />
-                            ) : (
-                                <img
-                                    src={noImage}
-                                    alt="No image"
-                                    className="w-[497px] h-[373px] aspect-[493/370] rounded-[12px] object-contain bg-white"
-                                />
-                            )}
+                        <div className="md:hidden w-[360px] h-[270px] aspect-[4/3] mx-auto">
+                            <img
+                                src={plantResponse['Images thumb'] || noImage}
+                                alt={plantResponse['Images title'] || 'Plant image'}
+                                className="w-full h-full object-contain"
+                            />
                         </div>
-                        <div className="flex flex-col pt-[40px] items-start gap-[40px] w-[518px]">
+                        <div className="hidden md:flex flex-col md:w-[497px] md:pt-[40px] md:items-start md:gap-[10px] shrink-0">
+                            <img
+                                src={plantResponse['Images thumb'] || noImage}
+                                alt={plantResponse['Images title'] || 'Plant image'}
+                                className="md:h-[373px] md:aspect-[493/370] md:object-contain"
+                            />
+                        </div>
+                        <div className="flex flex-col mt-[24px] md:mt-[40px] md:items-start items-center md:gap-[40px] md:w-[518px] self-stretch">
                             <PlantCard plantName={plantName} plantResponse={plantResponse} />
                         </div>
                     </>
