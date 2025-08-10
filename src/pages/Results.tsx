@@ -1,5 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button.tsx';
+import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PlantCard } from '@/components/PlantCard/PlantCard.tsx';
 import { PlantResponseType } from '@/pages/types.ts';
@@ -9,14 +8,9 @@ import { toast } from 'sonner';
 
 export default function Results() {
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
     const [plantResponse, setPlantResponse] = useState<PlantResponseType | null>(null);
     const [plantName, setPlantName] = useState<string | null>(null);
     const name = searchParams.get('plant');
-
-    const handleClick = () => {
-        navigate('/search');
-    };
 
     useEffect(() => {
         if (!name) return;
@@ -37,25 +31,31 @@ export default function Results() {
     }, [name]);
 
     return (
-        <div className="mt-10">
-            {plantName && plantResponse && (
-                <div className="pl-5 pr-5 flex flex-col items-center justify-center">
-                    <div className="flex flex-row items-center justify-center gap-10 max-w-6xl">
-                        {plantResponse['Images thumb'] ? (
-                            <img
-                                src={plantResponse['Images thumb']}
-                                alt={plantResponse['Images title'] || 'Plant image'}
-                            />
-                        ) : (
-                            <img src={noImage} alt="No image" className="w-32 h-32" />
-                        )}
-                        <PlantCard plantName={plantName} plantResponse={plantResponse} />
-                    </div>
-                    <Button className="mt-5" onClick={handleClick}>
-                        Go back
-                    </Button>
-                </div>
-            )}
+        <div className="flex flex-col items-start min-h-screen w-full relative pt-[24px] pb-[60px]">
+            <div className="flex flex-col md:flex-row px-[24px] md:px-[153px] items-start gap-[24px] md:gap-[80px] mx-auto">
+                {plantName && plantResponse && (
+                    <>
+                        <div className="flex flex-col w-[497px] pt-[40px] items-start gap-[10px] shrink-0">
+                            {plantResponse['Images thumb'] ? (
+                                <img
+                                    src={plantResponse['Images thumb']}
+                                    alt={plantResponse['Images title'] || 'Plant image'}
+                                    className="w-[497px] h-[373px] aspect-[493/370] rounded-[12px] object-contain bg-white"
+                                />
+                            ) : (
+                                <img
+                                    src={noImage}
+                                    alt="No image"
+                                    className="w-[497px] h-[373px] aspect-[493/370] rounded-[12px] object-contain bg-white"
+                                />
+                            )}
+                        </div>
+                        <div className="flex flex-col pt-[40px] items-start gap-[40px] w-[518px]">
+                            <PlantCard plantName={plantName} plantResponse={plantResponse} />
+                        </div>
+                    </>
+                )}
+            </div>
         </div>
     );
 }

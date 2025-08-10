@@ -29,7 +29,7 @@ export default function Search() {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen self-stretch relative">
+        <div className="flex flex-col min-h-screen w-full relative">
             <div
                 className="absolute inset-0 -z-10 w-full"
                 style={{
@@ -40,7 +40,7 @@ export default function Search() {
                     backgroundSize: 'cover',
                 }}
             />
-            <div className="text-center flex flex-col items-center px-[39px] md:px-[427px] my-auto mx-0">
+            <div className="text-center flex flex-col items-center px-[39px] md:px-[427px] my-auto max-w-[1200px] mx-auto w-full">
                 <div className="text-white text-2xl md:text-4xl w-[282px] md:w-[547px] font-bold text-center mb-[9.92px]">
                     Hello, Plant Lover!
                 </div>

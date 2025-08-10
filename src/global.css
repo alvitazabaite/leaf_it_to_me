@@ -15,8 +15,9 @@
     --color-yellowish-white: #FFFEFC;
     --color-light-gray: #DAD7CD;
     --color-gray: #C2C2C2;
-    --color-darker-gray: #A1A1A1;
-    --color-dark-gray: #9F9F9F;
+    --color-dark-gray-1: #A1A1A1;
+    --color-dark-gray-2: #9F9F9F;
+    --color-dark-gray-3: #5B5B5B;
     --color-black: #000000;
 
     --text-xs: 16px;

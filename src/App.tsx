@@ -8,7 +8,7 @@ import Register from '@/pages/Register.tsx';
 
 export default function App() {
     return (
-        <div className="w-full max-w-[1800px] mx-auto">
+        <div className="w-full mx-auto">
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
