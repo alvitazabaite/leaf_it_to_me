@@ -49,7 +49,7 @@ export default function Results() {
                                 className="md:h-[373px] md:aspect-[493/370] md:object-contain"
                             />
                         </div>
-                        <div className="flex flex-col mt-[24px] md:mt-[40px] md:items-start items-center md:gap-[40px] md:w-[518px] self-stretch">
+                        <div className="flex flex-col mt-[24px] md:mt-[40px] md:items-start items-center md:gap-[40px] w-[304px] md:w-[518px] self-stretch">
                             <PlantCard plantName={plantName} plantResponse={plantResponse} />
                         </div>
                     </>
