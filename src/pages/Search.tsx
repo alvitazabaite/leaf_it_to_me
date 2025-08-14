@@ -40,11 +40,11 @@ export default function Search() {
                     backgroundSize: 'cover',
                 }}
             />
-            <div className="text-center flex flex-col items-center px-[39px] md:px-[427px] my-auto max-w-[1200px] mx-auto w-full">
-                <div className="text-white text-2xl md:text-4xl w-[282px] md:w-[547px] font-bold text-center mb-[9.92px]">
+            <div className="px-[39px] md:px-[427px] text-center flex flex-col items-center my-auto max-w-[1200px] mx-auto w-full">
+                <div className="text-2xl md:text-4xl w-[282px] md:w-[547px] text-white font-bold text-center mb-[9.92px]">
                     Hello, Plant Lover!
                 </div>
-                <div className="text-white text-xl font-normal leading-normal w-[282px] md:w-[514px] mb-[50px] md:mb-[48px]">
+                <div className="w-[282px] md:w-[514px] mb-[50px] md:mb-[48px] text-white text-xl font-normal leading-normal">
                     Search for plants by name, explore thousands of species.
                 </div>
                 <SearchForm plants={plants} />

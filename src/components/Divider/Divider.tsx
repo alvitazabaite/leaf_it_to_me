@@ -1,3 +1,5 @@
-export function Divider() {
-    return <div className="w-full h-[1px] bg-[#CDCDCD] my-2 mb-4"></div>;
+import { DividerProps } from '@/components/Divider/types.ts';
+
+export function Divider({ className = '' }: DividerProps) {
+    return <div className={`w-full h-[1px] bg-[#CDCDCD] ${className}`} />;
 }

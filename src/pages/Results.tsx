@@ -31,25 +31,25 @@ export default function Results() {
     }, [name]);
 
     return (
-        <div className="flex flex-col items-start min-h-screen w-full relative pt-[24px]">
-            <div className="flex flex-col md:flex-row px-[24px] md:px-[153px] items-start gap-[24px] md:gap-[80px] mx-auto">
+        <div className="flex flex-col min-h-screen w-full relative mt-[24px]">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-[24px] md:gap-[80px] mx-auto my-auto max-w-[1200px] w-full">
                 {plantName && plantResponse && (
                     <>
-                        <div className="md:hidden w-[360px] h-[270px] aspect-[4/3] mx-auto">
+                        <div className="md:hidden flex w-[360px] aspect-[4/3] mx-auto items-center justify-center">
                             <img
                                 src={plantResponse['Images thumb'] || noImage}
                                 alt={plantResponse['Images title'] || 'Plant image'}
-                                className="w-full h-full object-contain"
+                                className="object-contain"
                             />
                         </div>
-                        <div className="hidden md:flex flex-col md:w-[497px] md:pt-[40px] md:items-start md:gap-[10px] shrink-0">
+                        <div className="hidden md:flex flex-col w-[497px] pt-[40px] items-start gap-[10px] shrink-0">
                             <img
                                 src={plantResponse['Images thumb'] || noImage}
                                 alt={plantResponse['Images title'] || 'Plant image'}
-                                className="md:h-[373px] md:aspect-[493/370] md:object-contain"
+                                className="h-[373px] aspect-[493/370] object-contain"
                             />
                         </div>
-                        <div className="flex flex-col mt-[24px] md:mt-[40px] md:items-start items-center md:gap-[40px] w-[304px] md:w-[518px] self-stretch">
+                        <div className="flex flex-col mt-[24px] md:mt-[40px] items-center md:items-start gap-[40px] w-[304px] md:w-[518px]">
                             <PlantCard plantName={plantName} plantResponse={plantResponse} />
                         </div>
                     </>

@@ -16,7 +16,7 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger
                 asChild
-                className="flex border h-[34px] md:h-[41px] w-[205px] md:w-[300px] bg-white justify-start rounded-[10px] border-gray"
+                className="h-[34px] md:h-[41px] w-[205px] md:w-[300px] flex border bg-white justify-start rounded-[10px] border-gray"
             >
                 <Button
                     variant="outline"
@@ -27,7 +27,7 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
                     {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search'}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="flex border w-[205px] md:w-[300px] p-0 bg-white text-dark-gray rounded-[10px] border-gray">
+            <PopoverContent className="w-[205px] md:w-[300px] flex border p-0 bg-white text-dark-gray rounded-[10px] border-gray">
                 <Command>
                     <CommandInput
                         placeholder="Plant name"
