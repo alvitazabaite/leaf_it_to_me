@@ -83,19 +83,21 @@ export function PlantCard({ plantName, plantResponse }: PlantCardProps) {
                                 </a>
                             </div>
                         </div>
-                        {plantResponse['Description']?.trim() && (
-                            <>
-                                <div className="font-bold mb-4">Description:</div>
-                                <div className="leading-[26px] mb-[56px]">{plantResponse['Description']}</div>
-                            </>
-                        )}
+                        <div className="md:hidden">
+                            {plantResponse['Description']?.trim() && (
+                                <>
+                                    <div className="font-bold mb-4">Description:</div>
+                                    <div className="leading-[26px] mb-[56px]">{plantResponse['Description']}</div>
+                                </>
+                            )}
+                        </div>
                     </div>
                     <div className="hidden md:block">
                         {plantResponse['Description']?.trim() && (
                             <>
                                 <div className="md:font-bold md:mb-4">Description:</div>
                                 <div className="md:leading-[26px]">{plantResponse['Description']}</div>
-                                <Divider />
+                                <Divider className="mt-[24px] mb-[24px]" />
                             </>
                         )}
                         <div className="md:mb-[60px] flex items-center gap-[5px]">
