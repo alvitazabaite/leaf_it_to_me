@@ -26,9 +26,9 @@ export function LoginForm() {
     };
 
     return (
-        <form className="flex flex-col w-72 gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <Input
-                className="bg-white"
+                className="text-sm md:text-base w-[250px] md:w-[350px] bg-white"
                 placeholder={'Email'}
                 {...register('email', {
                     required: true,
@@ -36,14 +36,17 @@ export function LoginForm() {
                 })}
             />
             <Input
-                className="bg-white text-lg"
+                className="text-sm md:text-base w-[250px] md:w-[350px] bg-white"
                 type={'password'}
                 placeholder={'Password'}
                 {...register('password', { required: true })}
             />
             <div className="flex justify-center">
                 <Button
-                    className={clsx('text-lg text-yellowish-white', isValid && 'cursor-pointer w-1/3')}
+                    className={clsx(
+                        'text-base md:text-lg text-black font-bold',
+                        isValid && 'cursor-pointer text-white',
+                    )}
                     disabled={!isValid}
                     type="submit"
                 >

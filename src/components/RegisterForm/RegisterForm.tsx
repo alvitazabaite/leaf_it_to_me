@@ -43,8 +43,9 @@ export function RegisterForm() {
     };
 
     return (
-        <form className="flex flex-col w-72 gap-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
             <Input
+                className="bg-white text-sm md:text-base w-[250px] md:w-[350px]"
                 placeholder={'Email'}
                 {...register('email', {
                     required: true,
@@ -52,18 +53,27 @@ export function RegisterForm() {
                 })}
             />
             <Input
+                className="bg-white text-sm md:text-base w-[250px] md:w-[350px]"
                 type={'password'}
                 placeholder={'Password'}
                 {...register('password', { required: true, minLength: 5 })}
             />
             <Input
+                className="bg-white text-sm md:text-base w-[250px] md:w-[350px]"
                 type={'password'}
                 placeholder="Confirm Password"
                 {...register('confirmPassword', { required: true })}
             />
             {error && <p className="text-red-500 text-lg text-center">{error}</p>}
             <div className="flex justify-center">
-                <Button className={clsx(isValid && 'cursor-pointer w-1/3')} disabled={!isValid} type="submit">
+                <Button
+                    className={clsx(
+                        'text-base md:text-lg text-black font-bold',
+                        isValid && 'cursor-pointer text-white',
+                    )}
+                    disabled={!isValid}
+                    type="submit"
+                >
                     Register
                 </Button>
             </div>

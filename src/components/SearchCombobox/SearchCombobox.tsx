@@ -22,7 +22,7 @@ export function SearchCombobox({ plants, plantName, onChange }: SearchComboboxPr
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="tex-[15px] md:text-lg leading-normal text-dark-gray font-normal pt-2 pb-2 pl-2"
+                    className="text-[15px] md:text-lg leading-normal text-dark-gray font-normal pt-2 pb-2 pl-2"
                 >
                     {plantName ? plants.find(plant => plant.value === plantName)?.label : 'Search'}
                 </Button>
