@@ -43,7 +43,7 @@ export function RegisterForm() {
     };
 
     return (
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4 font-bold" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 className="bg-white text-sm md:text-base w-[250px] md:w-[350px]"
                 placeholder={'Email'}
@@ -68,8 +68,10 @@ export function RegisterForm() {
             <div className="flex justify-center">
                 <Button
                     className={clsx(
-                        'text-base md:text-lg text-black font-bold',
-                        isValid && 'cursor-pointer text-white',
+                        'text-base md:text-lg font-bold',
+                        isValid
+                            ? 'cursor-pointer text-white bg-dark-gray-3 hover:bg-dark-gray-2'
+                            : 'cursor-not-allowed text-black bg-dark-gray-1',
                     )}
                     disabled={!isValid}
                     type="submit"
