@@ -1,21 +1,12 @@
-import { NavLink } from 'react-router-dom';
-import { clsx } from 'clsx';
 import { useAuth } from '@/context/AuthContext.ts';
 
 export default function Header() {
     const { logout } = useAuth();
 
     return (
-        <header className="relative flex items-center shadow-sm h-[60px] text-black font-serif w-full bg-white">
-            <div className="flex space-x-20 w-full justify-center">
-                <NavLink
-                    to="/search"
-                    className={({ isActive }) => clsx('cursor-pointer', isActive && 'text-amber-400')}
-                >
-                    Search Page
-                </NavLink>
-            </div>
-            <button className="cursor-pointer absolute right-15 font-medium hover:text-red-500" onClick={logout}>
+        <header className="h-[70px] md:h-[90px] px-[16.5px] md:px-[150.56px] pr-[20.5px] md:pr-[211.52px] flex items-center justify-between bg-dark-green shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+            <div className="w-[50px] md:w-[70px] h-[50px] md:h-[70px] bg-[url('@/assets/tree.png')] bg-light-gray bg-center bg-cover bg-no-repeat aspect-square shrink-0"></div>
+            <button onClick={logout} className="text-lg text-white font-bold cursor-pointer">
                 Log out
             </button>
         </header>

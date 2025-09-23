@@ -8,11 +8,19 @@ export type PlantResponseType = {
     'Water requirement': string;
     'Light requirement': string;
     'Soil type': string;
+    'Height': string;
     'Layer': string;
-    'Wikipedia': string;
     'Description': string;
+    'Wikipedia': string;
     'Images thumb': string;
     'Images title': string;
     'Name': string;
+};
+
+export type PlantTypeWithImages = {
+    'Water requirement': string;
+    'Light requirement': string;
+    'Soil type': string;
     'Height': string;
+    'Layer': string;
 };
